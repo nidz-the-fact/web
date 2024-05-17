@@ -9,6 +9,8 @@ const CHAIN_ID_TO_NETWORK: Record<number, Network> = {
   1: 'homestead',
   5: 'goerli',
   11155111: 'sepolia',
+
+  88991: 'jbc',
 };
 
 export function getL1NetworkForChainEnv() {
