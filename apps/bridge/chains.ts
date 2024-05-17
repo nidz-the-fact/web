@@ -250,4 +250,109 @@ export default [
     },
     testnet: true,
   },
+
+  {
+    id: 11155420,
+    name: 'OP Sepolia Testnet',
+    network: 'op-sepolia',
+    summary: {
+      location: 'OP Sepolia Testnet',
+      svg: '/icons/eth-summary.svg',
+    },
+    svg: '/icons/base.svg',
+    description: 'Testnet',
+    iconUrl:
+      'https://images.ctfassets.net/q5ulk4bp65r7/3TBS4oVkD1ghowTqVQJlqj/2dfd4ea3b623a7c0d8deb2ff445dee9e/Consumer_Wordmark.svg',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'OP Sepolia Testnet Ether',
+      symbol: 'ETH',
+    },
+    rpcUrls: {
+      default: {
+        http: ['https://sepolia.optimism.io'],
+      },
+      public: {
+        http: ['https://sepolia.optimism.io'],
+      },
+    },
+    blockExplorers: {
+      default: {
+        name: 'Blockscout',
+        url: 'https://sepolia-optimism.etherscan.io',
+      },
+    },
+    testnet: true,
+  },
+
+
+
+  {
+    id: 88991,
+    name: 'Jibchain Testnet',
+    network: 'jbc',
+    summary: {
+      location: 'Jibchain Testnet',
+      svg: '/icons/jbc.png',
+    },
+    svg: '/icons/jbc.png',
+    description: 'Testnet',
+    iconUrl:
+      'https://images.ctfassets.net/q5ulk4bp65r7/3TBS4oVkD1ghowTqVQJlqj/2dfd4ea3b623a7c0d8deb2ff445dee9e/Consumer_Wordmark.svg',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Jibchain Testnet Ether',
+      symbol: 'ETH',
+    },
+    rpcUrls: {
+      default: {
+        http: ['https://rpc.testnet.jibchain.net'],
+      },
+      public: {
+        http: ['https://rpc.testnet.jibchain.net'],
+      },
+    },
+    blockExplorers: {
+      default: {
+        name: 'Blockscout',
+        url: 'https://exp.testnet.jibchain.net',
+      },
+    },
+    testnet: true,
+  },
+
+  {
+    id: 7001,
+    name: 'Hera Testnet',
+    network: 'hera-testnet',
+    summary: {
+      location: 'Hera Testnet',
+      svg: '/icons/eth.svg',
+    },
+    svg: '/icons/eth.svg',
+    description: 'Testnet',
+    iconUrl:
+      'https://images.ctfassets.net/q5ulk4bp65r7/3TBS4oVkD1ghowTqVQJlqj/2dfd4ea3b623a7c0d8deb2ff445dee9e/Consumer_Wordmark.svg',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Hera Testnet Ether',
+      symbol: 'ETH',
+    },
+    rpcUrls: {
+      default: {
+        http: ['https://rpc.hera.jbcha.in'],
+      },
+      public: {
+        http: ['https://rpc.hera.jbcha.in'],
+      },
+    },
+    blockExplorers: {
+      default: {
+        name: 'Blockscout',
+        url: 'https://www.hera.jbcha.in',
+      },
+    },
+    testnet: true,
+  },
+
 ] as const satisfies Readonly<(Chain & ChainMetadata)[]>;
