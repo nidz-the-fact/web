@@ -3,10 +3,6 @@ const { BugsnagSourceMapUploaderPlugin } = require('webpack-bugsnag-plugins');
 const isProdEnv = process.env.NODE_ENV === 'production';
 
 const baseConfig = {
-  i18n: {
-    locales: ['en-US'],
-    defaultLocale: 'en-US',
-  },
   // Enable advanced features
   compiler: {
     reactRemoveProperties: true,
@@ -125,6 +121,8 @@ const securityHeaders = [
     key: 'x-xss-protection',
     value: '1; mode=block',
   },
+
+
 ];
 
 function extendBaseConfig(customConfig = {}, plugins = []) {
@@ -155,7 +153,8 @@ function extendBaseConfig(customConfig = {}, plugins = []) {
   return plugins.reduce((acc, plugin) => plugin(acc), defaultConfig);
 }
 
-module.exports = extendBaseConfig({
+
+module.exports = extendBaseConfig({  
   publicRuntimeConfig: {
     chains: process.env.CHAINS,
     assets: process.env.ASSETS,
@@ -200,13 +199,10 @@ module.exports = extendBaseConfig({
     cctpEnabled: process.env.CCTP_ENABLED,
   },
   ...baseConfig,
-  async headers() {
-    return [
-      {
-        source: '/:path*',
-        basePath: false,
-        headers: securityHeaders,
-      },
-    ];
+
+  output: 'export',
+  images: {
+    unoptimized: true,
   },
+  
 });
