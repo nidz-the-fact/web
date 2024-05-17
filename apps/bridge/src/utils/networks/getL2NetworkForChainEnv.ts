@@ -9,6 +9,9 @@ const CHAIN_ID_TO_NETWORK: Record<number, Network> = {
   8453: 'base',
   84531: 'base-goerli',
   84532: 'base-sepolia',
+
+  11155420: 'op-sepolia',
+  7001: 'hera-testnet',
 };
 
 export function getL2NetworkForChainEnv() {
