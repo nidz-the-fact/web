@@ -219,6 +219,11 @@ export function WithdrawContainer() {
 
   const initiateWithdrawal = useCallback(() => {
     void (async () => {
+      if (Number(withdrawAmount) <= 0) {
+        alert("Amount must be greater than 0");
+        return;
+      }
+
       onOpenWithdrawModal();
       try {
         // Only bridge on mainnet if user has accepted ToS. Always allow bridging on testnet.
@@ -257,6 +262,7 @@ export function WithdrawContainer() {
     withdrawERC20,
     withdraw,
     onCloseWithdrawModal,
+    withdrawAmount,
   ]);
 
   const handleProceedToApproval = useCallback(() => {
@@ -270,7 +276,6 @@ export function WithdrawContainer() {
   }, [initiateWithdrawal, onCloseTransactionSummaryModal]);
 
   let button;
-  let withdrawDisabled;
   let transactionSummaryModal;
 
   if (!isWalletConnected) {
@@ -278,13 +283,9 @@ export function WithdrawContainer() {
       <ConnectWalletButton className="text-md flex w-full items-center justify-center rounded-md p-4 font-sans font-bold uppercase sm:w-auto" />
     );
   } else if (selectedAsset.protocol === 'CCTP' && !readApprovalResult) {
-    withdrawDisabled =
-      (isSmartContractWallet && !isAddress(withdrawTo ?? '')) || !isPermittedToBridge;
-
     button = (
       <BridgeButton
-        onClick={onOpenTransactionSummaryModal}
-        disabled={withdrawDisabled}
+        onClick={Number(withdrawAmount) > 0 ? onOpenTransactionSummaryModal : undefined}
         className="text-md flex w-full items-center justify-center rounded-md p-4 font-sans font-bold uppercase sm:w-auto"
       >
         Approval
@@ -301,17 +302,9 @@ export function WithdrawContainer() {
       />
     );
   } else {
-    withdrawDisabled =
-      parseFloat(withdrawAmount) <= 0 ||
-      parseFloat(withdrawAmount) > parseFloat(L2Balance?.formatted ?? '0') ||
-      withdrawAmount === '' ||
-      (isSmartContractWallet && !isAddress(withdrawTo ?? '')) ||
-      !isPermittedToBridge;
-
     button = (
       <BaseButton
-        onClick={onOpenTransactionSummaryModal}
-        disabled={withdrawDisabled}
+        onClick={Number(withdrawAmount) > 0 ? onOpenTransactionSummaryModal : undefined}
         toChainId={chainId}
         className="text-md flex w-full items-center justify-center rounded-md p-4 font-sans font-bold uppercase sm:w-auto"
       >
