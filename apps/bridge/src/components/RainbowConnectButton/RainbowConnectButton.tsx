@@ -65,8 +65,8 @@ export function WalletModal({ isOpen, displayAddress, address, Close }: WalletMo
   );
 }
 
-const ALL_SUPPORTED_CHAIN_IDS = [1, 5, 11155111, 8453, 84531, 84532];
-const TESTNET_SUPPORTED_CHAIN_IDS = [5, 11155111, 84531, 84532];
+const ALL_SUPPORTED_CHAIN_IDS = [88991, 7001];
+const TESTNET_SUPPORTED_CHAIN_IDS = [88991, 7001];
 const supportedChains = (
   publicRuntimeConfig.mainnetGALaunchFlag === 'true'
     ? ALL_SUPPORTED_CHAIN_IDS
@@ -96,7 +96,7 @@ function NetworkSwitcherOptions({ selectedChainId }: NetworkSwitcherOptionsProps
             if (chain.id === 5 || chain.id === 84531) {
               void push(`${publicRuntimeConfig.goerliBridgeURL}${pathname}`);
               return;
-            } else if (chain.id === 11155111 || chain.id === 84532) {
+            } else if (chain.id === 88991 || chain.id === 7001) {
               void push(`${publicRuntimeConfig.sepoliaBridgeURL}${pathname}`);
               return;
             }
@@ -114,7 +114,7 @@ function NetworkSwitcherOptions({ selectedChainId }: NetworkSwitcherOptionsProps
           // We are on the Goerli bridge. If trying to switch to Sepolia, redirect to the Sepolia bridge.
           // Otherwise, switch networks. Note that switching to mainnet is already handled above.
           if (isGoerli) {
-            if (chain.id === 11155111 || chain.id === 84532) {
+            if (chain.id === 88991 || chain.id === 7001) {
               void push(`${publicRuntimeConfig.sepoliaBridgeURL}${pathname}`);
               return;
             }
@@ -196,9 +196,12 @@ export function RainbowConnectButton() {
     (isMainnet && currentChain?.id !== 1 && currentChain?.id !== 8453) ||
     (!isMainnet &&
       currentChain?.id !== 5 &&
-      currentChain?.id !== 11155111 &&
+      currentChain?.id !== 88991 &&
       currentChain?.id !== 84531 &&
-      currentChain?.id !== 84532);
+      currentChain?.id !== 84532 &&
+
+      currentChain?.id !== 11155420 &&
+      currentChain?.id !== 7001);
 
   return (
     <ConnectButton.Custom>
