@@ -50,6 +50,12 @@ const contentSecurityPolicy = {
   'form-action': ["'self'"],
   'connect-src': [
     "'self'",
+    'https://rpc.testnet.jibchain.net',
+    'https://exp.testnet.jibchain.net/api',
+
+    'https://rpc.hera.jbcha.in',
+    'https://www.hera.jbcha.in/api',
+    
     'https://ethereum.publicnode.com', // ETH rpc,
     'https://cloudflare-eth.com', // ETH rpc,
     'https://eth.llamarpc.com', // ETH rpc
@@ -200,7 +206,18 @@ module.exports = extendBaseConfig({
   },
   ...baseConfig,
 
-  output: 'export',
+
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        basePath: false,
+        headers: securityHeaders,
+      },
+    ];
+  },
+
+  // output: 'export',
   images: {
     unoptimized: true,
   },
